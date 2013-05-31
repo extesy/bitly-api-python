@@ -7,6 +7,7 @@ except ImportError:
 import sys
 import time
 import types
+import urllib
 from urllib.parse import urlencode
 import warnings
 
@@ -53,7 +54,7 @@ class Connection(object):
 
     Usage:
         import bitly_api3
-        c = bitly_api3.Connection('bitlyapidemo','R_{{apikey}}')
+        c = bitly_api.Connection('bitlyapidemo','R_{{apikey}}')
         # or to use oauth2 endpoints
         c = bitly_api3.Connection(access_token='...')
         c.shorten('http://www.google.com/')
@@ -778,7 +779,7 @@ class Connection(object):
             }
 
         try:
-            http_response = bitly_http.get(request, timeout, user_agent = self.user_agent)
+            http_response = bitly_api3.bitly_http.get(request, timeout, user_agent = self.user_agent)
             if http_response['http_status_code'] != 200:
                 raise BitlyError(500, http_response['result'])
             if not http_response['result'].startswith('{'):
