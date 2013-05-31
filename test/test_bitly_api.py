@@ -9,7 +9,7 @@ or 'export' the two environment variables prior to running nosetests
 import os
 import sys
 sys.path.append('../')
-import bitly_api
+import bitly_api3
 
 BITLY_ACCESS_TOKEN = "BITLY_ACCESS_TOKEN"
 
@@ -19,7 +19,7 @@ def get_connection():
     if BITLY_ACCESS_TOKEN not in os.environ:
         raise ValueError("Environment variable '{}' required".format(BITLY_ACCESS_TOKEN))
     access_token = os.getenv(BITLY_ACCESS_TOKEN)
-    bitly = bitly_api.Connection(access_token=access_token)
+    bitly = bitly_api3.Connection(access_token=access_token)
     return bitly
 
 
@@ -60,5 +60,5 @@ def testProDomain():
         try:
             result = bitly.pro_domain(domain)
             assert result == test_data[domain], domain
-        except bitly_api.BitlyError, e:
+        except bitly_api3.BitlyError, e:
             assert str(e) == test_data[domain]

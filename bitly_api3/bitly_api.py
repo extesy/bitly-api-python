@@ -1,4 +1,4 @@
-import bitly_api.bitly_http
+import bitly_api3.bitly_http
 import hashlib
 try:
     import json
@@ -7,7 +7,6 @@ except ImportError:
 import sys
 import time
 import types
-import urllib
 from urllib.parse import urlencode
 import warnings
 
@@ -32,10 +31,10 @@ class Connection(object):
     http://github.com/bitly/bitly-api-python
     
     Usage:
-        import bitly_api
-        c = bitly_api.Connection('bitlyapidemo','R_{{apikey}}')
+        import bitly_api3
+        c = bitly_api3.Connection('bitlyapidemo','R_{{apikey}}')
         # or to use oauth2 endpoints
-        c = bitly_api.Connection(access_token='...')
+        c = bitly_api3.Connection(access_token='...')
         c.shorten('http://www.google.com/')
     """
     
@@ -47,7 +46,7 @@ class Connection(object):
         self.access_token = access_token
         self.secret = secret
         (major, minor, micro, releaselevel, serial) = sys.version_info
-        self.user_agent = "Python/%d.%d.%d bitly_api/%s" % (major, minor, micro, '?')
+        self.user_agent = "Python/%d.%d.%d bitly_api3/%s" % (major, minor, micro, '?')
     
     def shorten(self, uri, x_login=None, x_apiKey=None, preferred_domain=None):
         """ creates a bitly link for a given long url 
@@ -687,7 +686,7 @@ class Connection(object):
             }
 
         try:
-            http_response = bitly_api.bitly_http.get(request, timeout, user_agent = self.user_agent)
+            http_response = bitly_api3.bitly_http.get(request, timeout, user_agent = self.user_agent)
             if http_response['http_status_code'] != 200:
                 raise BitlyError(500, http_response['result'])
             if not http_response['result'].startswith('{'):
