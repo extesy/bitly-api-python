@@ -2,7 +2,7 @@ from setuptools import setup
 
 version = '0.2'
 
-setup(name='bitly_api',
+setup(name='bitly_api3',
       version=version,
       description="An API for bit.ly",
       long_description=open("./README.md", "r").read(),
@@ -23,7 +23,7 @@ setup(name='bitly_api',
       url='https://github.com/bitly/bitly-api-python',
       download_url="https://bitly-downloads.s3.amazonaws.com/bitly_api/bitly_api-%s.tar.gz" % version,
       license='MIT License',
-      packages=['bitly_api'],
+      packages=['bitly_api3'],
       include_package_data=True,
       zip_safe=True,
       )
