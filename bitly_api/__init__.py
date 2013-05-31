@@ -1,4 +1,4 @@
-from bitly_api import Connection, BitlyError, Error
+from bitly_api.bitly_api import Connection, BitlyError, Error
 __version__ = '0.2'
 __author__ = "Jehiah Czebotar <jehiah@gmail.com>"
 __all__ = ["Connection", "BitlyError", "Error"]

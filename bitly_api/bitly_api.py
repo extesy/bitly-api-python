@@ -1,4 +1,4 @@
-import bitly_http
+import bitly_api.bitly_http
 import hashlib
 try:
     import json
@@ -8,6 +8,7 @@ import sys
 import time
 import types
 import urllib
+from urllib.parse import urlencode
 import warnings
 
 class Error(Exception):
@@ -19,10 +20,11 @@ class BitlyError(Error):
         self.code = code
 
 def _utf8(s):
-    if isinstance(s, unicode):
-        s = s.encode('utf-8')
-    assert isinstance(s, str)
-    return s
+    #if isinstance(s, unicode):
+    #    s = s.encode('utf-8')
+    #print(s)
+    #assert isinstance(s, str)
+    return str(s)
 
 class Connection(object):
     """
@@ -636,7 +638,7 @@ class Connection(object):
             if isinstance(tz_offset, int):
                 assert -12 <= tz_offset <= 12, "integer tz_offset must be between -12 and 12"
             else:
-                assert isinstance(tz_offset, (str, unicode))
+                assert isinstance(tz_offset, (str))#, unicode))
             params["tz_offset"] = tz_offset
         if rollup is not None:
             assert isinstance(rollup, bool)
@@ -681,11 +683,11 @@ class Connection(object):
             'scheme': scheme,
             'host': host,
             'method': method,
-            'params': urllib.urlencode(params, doseq=1)
+            'params': urlencode(params, doseq=1)
             }
 
         try:
-            http_response = bitly_http.get(request, timeout, user_agent = self.user_agent)
+            http_response = bitly_api.bitly_http.get(request, timeout, user_agent = self.user_agent)
             if http_response['http_status_code'] != 200:
                 raise BitlyError(500, http_response['result'])
             if not http_response['result'].startswith('{'):
