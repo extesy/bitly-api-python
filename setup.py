@@ -23,7 +23,7 @@ setup(name='bitly_api3',
       url='https://github.com/bitly/bitly-api-python',
       download_url="https://bitly-downloads.s3.amazonaws.com/bitly_api/bitly_api-%s.tar.gz" % version,
       license='MIT License',
-      packages=['bitly_api3'],
+      packages=['bitly_api'],
       include_package_data=True,
       zip_safe=True,
       )
