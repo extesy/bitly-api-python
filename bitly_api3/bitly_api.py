@@ -7,7 +7,6 @@ except ImportError:
 import sys
 import time
 import types
-import urllib
 from urllib.parse import urlencode
 import warnings
 
@@ -54,7 +53,7 @@ class Connection(object):
 
     Usage:
         import bitly_api3
-        c = bitly_api.Connection('bitlyapidemo','R_{{apikey}}')
+        c = bitly_api3.Connection('bitlyapidemo','R_{{apikey}}')
         # or to use oauth2 endpoints
         c = bitly_api3.Connection(access_token='...')
         c.shorten('http://www.google.com/')
@@ -744,7 +743,7 @@ class Connection(object):
             params["limit"] = limit
         if unit_reference_ts is not None:
             assert (unit_reference_ts == 'now' or
-                    isinstance(unit_reference_ts, (int, long)))
+                    isinstance(unit_reference_ts, int))
             params["unit_reference_ts"] = unit_reference_ts
 
         return self._call_oauth2(endpoint, params)
