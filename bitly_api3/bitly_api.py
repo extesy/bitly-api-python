@@ -37,7 +37,7 @@ def _utf8_params(params):
     for k, v in params.items():
         if v is None:
             continue
-        if isinstance(v, (int, long, float)):
+        if isinstance(v, (int, float)):
             v = str(v)
         if isinstance(v, (list, tuple)):
             v = [_utf8(x) for x in v]
